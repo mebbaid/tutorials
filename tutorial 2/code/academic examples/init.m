@@ -7,7 +7,7 @@ close all;
 
 simTime    = 10;
 simStep    = 10^-4;
-Delta      = 0.1;
+Delta      = 0.2;
 x0   = [-1;0];
 
 
@@ -32,7 +32,7 @@ tc = 0:simStep:simTime;
 
 
 emulationFlag = 0;
-SingleRateFlag = 0;
+SingleRateFlag = 1;
 
 
 %------------------------ plots------------------------
