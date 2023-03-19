@@ -18,6 +18,10 @@ Gain = place(A,b, [-3 , -10]); % pole placement for ct system
 As   = [1 Delta;0 1];  bs = [Delta^2/2; Delta];
 Gains = place(As, bs, [0.2 , 0.1]);  % pole placement for dt system
 
+emulationFlag = 0;
+SingleRateFlag = 1;
+refType = 1;
+
 out =  sim('motivation.slx','StartTime','0','StopTime',num2str(simTime),'FixedStep',num2str(simStep));
 xc  = out.x.Data;
 yc  = out.y.Data;
@@ -31,8 +35,7 @@ ref = out.r.Data;
 tc = 0:simStep:simTime;
 
 
-emulationFlag = 0;
-SingleRateFlag = 1;
+
 
 
 %------------------------ plots------------------------
