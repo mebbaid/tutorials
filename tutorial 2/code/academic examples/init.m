@@ -5,10 +5,10 @@ clearvars;
 close all;
 
 
-simTime    = 10;
+simTime    = 7;
 simStep    = 10^-4;
-Delta      = 0.2;
-x0   = [-1;0];
+Delta      = 0.1;
+x0   = [-1;1];
 
 
 k1   = 1; 
@@ -38,11 +38,12 @@ SingleRateFlag = 1;
 %------------------------ plots------------------------
 figure('Name','Continuous time')
 subplot(2,1,1)
-plot(tc, yc,  'LineWidth', 2);
+plot(tc, xc(1,:),  'LineWidth', 2);
 hold on; grid on;
+plot(tc, yc,  'LineWidth', 2);
 plot(tc, ref, '--'  ,'LineWidth', 2);
 plot(tc, xc(2,:),  'LineWidth', 2);
-l = legend('$x_1$', '$y_d$' , '$x_2$');
+l = legend('$x_1$', '$y$', '$y_d$' , '$x_2$');
 set(l,'Interpreter','Latex');
 l = xlabel('Time (s)'); 
 set(l,'Interpreter','Latex');
@@ -65,11 +66,12 @@ l.FontSize = 30;
 if emulationFlag ~= 0
     figure('Name','Emulation')
     subplot(2,1,1)
-    plot(tc, out.ye.Data,  'LineWidth', 2);
+    plot(tc, out.xe.Data(1,:),  'LineWidth', 2);
     hold on; grid on;
+    plot(tc, out.ye.Data,  'LineWidth', 2);
     plot(tc, ref, '--'  ,'LineWidth', 2);
     plot(tc, out.xe.Data(2,:),  'LineWidth', 2);
-    l = legend('$x_1$', '$y_d$' , '$x_2$');
+    l = legend('$x_1$', '$y$','$y_d$' , '$x_2$');
     set(l,'Interpreter','Latex');
     l = xlabel('Time (s)'); 
     set(l,'Interpreter','Latex');
@@ -94,11 +96,12 @@ end
 if SingleRateFlag ~=0
     figure('Name','Approximate single rate sampled-data')
     subplot(2,1,1)
-    plot(tc, out.ys.Data,  'LineWidth', 2);
+    plot(tc, out.xs.Data(1,:),  'LineWidth', 2);
     hold on; grid on;
+    plot(tc, out.ys.Data,  'LineWidth', 2);
     plot(tc, ref, '--'  ,'LineWidth', 2);
     plot(tc, out.xs.Data(2,:),  'LineWidth', 2);
-    l = legend('$x_1$', '$y_d$' , '$x_2$');
+    l = legend('$x_1$','$y$', '$y_d$' , '$x_2$');
     set(l,'Interpreter','Latex');
     l = xlabel('Time (s)'); 
     set(l,'Interpreter','Latex');

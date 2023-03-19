@@ -3,9 +3,9 @@
 % under sampling. 
 
 clc
-clear all
+clearvars
 
-simTime = 15; 
+simTime = 5; 
 
 T = 0.1;
 
