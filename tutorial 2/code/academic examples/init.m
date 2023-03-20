@@ -7,7 +7,7 @@ close all;
 
 simTime    = 7;
 simStep    = 10^-4;
-Delta      = 0.1;
+Delta      = 0.2;
 x0   = [-1;1];
 
 
@@ -18,7 +18,8 @@ Gain = place(A,b, [-3 , -10]); % pole placement for ct system
 As   = [1 Delta;0 1];  bs = [Delta^2/2; Delta];
 Gains = place(As, bs, [0.2 , 0.1]);  % pole placement for dt system
 
-emulationFlag = 0;
+emulationFlag = 1;
+emulationRedesignFlag = 1;
 SingleRateFlag = 1;
 refType = 1;
 
@@ -86,6 +87,36 @@ if emulationFlag ~= 0
     plot(tc, out.ue.Data,  'LineWidth', 2);
     hold on; grid on;
     plot(tc, out.ve.Data,  'LineWidth', 2);
+    l = legend('$u$', '$v$');
+    set(l,'Interpreter','Latex');
+    l = xlabel('Time (s)'); 
+    set(l,'Interpreter','Latex');
+    l = ylabel('Controls'); 
+    set(l,'Interpreter','Latex');
+    l.FontSize = 30;
+end
+
+
+if emulationRedesignFlag ~= 0
+    figure('Name','Emulation Redesign')
+    subplot(2,1,1)
+    plot(tc, out.xe1.Data(1,:),  'LineWidth', 2);
+    hold on; grid on;
+    plot(tc, out.ye1.Data,  'LineWidth', 2);
+    plot(tc, ref, '--'  ,'LineWidth', 2);
+    plot(tc, out.xe1.Data(2,:),  'LineWidth', 2);
+    l = legend('$x_1$', '$y$','$y_d$' , '$x_2$');
+    set(l,'Interpreter','Latex');
+    l = xlabel('Time (s)'); 
+    set(l,'Interpreter','Latex');
+    l = ylabel('States'); 
+    set(l,'Interpreter','Latex');
+    l.FontSize = 30;
+    
+    subplot(2,1,2)
+    plot(tc, out.ue1.Data,  'LineWidth', 2);
+    hold on; grid on;
+    plot(tc, out.ve1.Data,  'LineWidth', 2);
     l = legend('$u$', '$v$');
     set(l,'Interpreter','Latex');
     l = xlabel('Time (s)'); 
