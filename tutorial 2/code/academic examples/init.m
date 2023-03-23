@@ -5,9 +5,9 @@ clearvars;
 close all;
 
 
-simTime    = 7;
+simTime    = 3;
 simStep    = 10^-4;
-Delta      = 0.2;
+Delta      = 0.25;
 x0   = [-1;1];
 
 
@@ -21,7 +21,7 @@ Gains = place(As, bs, [0.2 , 0.1]);  % pole placement for dt system
 emulationFlag = 1;
 emulationRedesignFlag = 1;
 SingleRateFlag = 1;
-refType = 1;
+refType = 0;
 
 out =  sim('motivation.slx','StartTime','0','StopTime',num2str(simTime),'FixedStep',num2str(simStep));
 xc  = out.x.Data;
