@@ -27,7 +27,6 @@ end
 
 T = [1 -delta/2;0 1];
 F_tilde = subs(F_sd, T*z, zd);
-% F_tilde = simplify(subs(F_tilde, z(1), zd(1)+delta/2*zd(2)));
-% F_tilde = simplify(subs(F_tilde, z(2), zd(2)));
+
 
 

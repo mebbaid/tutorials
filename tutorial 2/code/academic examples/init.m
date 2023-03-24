@@ -7,16 +7,17 @@ close all;
 
 simTime    = 3;
 simStep    = 10^-4;
-Delta      = 0.25;
+Delta      = 0.3;
 x0   = [-1;1];
 
 
 k1   = 1; 
 k2   = 1;
 A    = [0 1;-1 -1];    b = [0;1];
-Gain = place(A,b, [-3 , -10]); % pole placement for ct system
+p1 = -3; p2 = -10;
+Gain = place(A,b, [p1 , p2]); % pole placement for ct system
 As   = [1 Delta;0 1];  bs = [Delta^2/2; Delta];
-Gains = place(As, bs, [0.2 , 0.1]);  % pole placement for dt system
+Gains = place(As, bs, [exp(p1*Delta) , exp(p2*Delta)]);  % pole placement for dt system
 
 emulationFlag = 1;
 emulationRedesignFlag = 1;
